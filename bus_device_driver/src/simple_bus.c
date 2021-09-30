@@ -1,14 +1,5 @@
 #include "simple_bus.h"
 
-//struct sb_device {
-//    char name[16];
-//    struct device dev;
-//};
-//
-//struct sb_driver {
-//    struct device_driver driver;
-//};
-
 char *Version = "0.0.1";
 
 static int sb_match(struct device *dev, struct device_driver *driver)
