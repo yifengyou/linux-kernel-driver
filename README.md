@@ -1,2 +1,3 @@
-# awesome-lkd
-Awesome Linux kernel driver,just for fun~
+# lkd
+
+Linux kernel driver,just for fun~
