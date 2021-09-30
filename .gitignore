@@ -1,3 +1,7 @@
+# kernel module
+modules.order
+Module.symvers
+
 # Prerequisites
 *.d
 
