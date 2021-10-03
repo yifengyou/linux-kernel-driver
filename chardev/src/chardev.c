@@ -142,3 +142,5 @@ device_write(struct file *filp, const char *buff, size_t len, loff_t * off)
     printk(KERN_ALERT "Sorry, this operation isn't supported.\n");
     return -EINVAL;
 }
+
+MODULE_LICENSE("GPL");
