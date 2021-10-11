@@ -7,6 +7,7 @@ default: kernel_modules
   
 kernel_modules:
 	make -C /lib/modules/$(KERNEL_VER)/build M=$(CURDIR) modules
+	ls -alh *.ko
       
 clean:
 	make -C /lib/modules/$(KERNEL_VER)/build M=$(CURDIR) clean
