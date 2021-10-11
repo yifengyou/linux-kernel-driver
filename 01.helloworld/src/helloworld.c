@@ -11,6 +11,7 @@
 static int __init simple_init(void)                           //模块入口点没有传入参数（void）
 {
     printk(KERN_INFO "Loading Module\n");
+	printk("%s  %s  %d\n",__FILE__,__func__,__LINE__);
     return 0;                                   //模块入口点必须返回int，0：成功  !0：失败
 }
 
@@ -20,6 +21,8 @@ static int __init simple_init(void)                           //模块入口点�
 static void __exit simple_exit(void)                          ////模块离开点没有传入参数（void）
 {
     printk(KERN_INFO "Removing Module\n");
+	printk("%s  %s  %d\n",__FILE__,__func__,__LINE__);
+	// 返回值void，不需要return
 }
 
 //用于注册模块入口点和出口点的宏

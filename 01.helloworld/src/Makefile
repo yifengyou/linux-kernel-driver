@@ -1,13 +1,18 @@
-obj-m := helloworld.o
-
+ENTRY := helloworld
+obj-m := $(ENTRY).o
 KERNEL_VER = $(shell uname -r)
-EXTRA_CFLAGS = -g -O0
+default: build_module
   
-default: kernel_modules
-  
-kernel_modules:
-	make -C /lib/modules/$(KERNEL_VER)/build M=$(CURDIR) modules
+build_module:
+	make -C /lib/modules/$(KERNEL_VER)/build M=$(PWD) modules
 	ls -alh *.ko
       
 clean:
-	make -C /lib/modules/$(KERNEL_VER)/build M=$(CURDIR) clean
+	make -C /lib/modules/$(KERNEL_VER)/build M=$(PWD) clean
+
+insmod:
+	dmesg --clear
+	insmod $(ENTRY).ko  &> /dev/null && dmesg
+
+rmmod:
+	rmmod $(ENTRY) && dmesg
