@@ -2,6 +2,7 @@
 modules.order
 Module.symvers
 *.cmd
+*.swp
 
 # Prerequisites
 *.d

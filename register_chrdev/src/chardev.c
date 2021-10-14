@@ -39,6 +39,8 @@ static struct file_operations fops = {
  */
 int init_module(void)
 {
+	// 自动分配设备号,成功返回设备号，失败返回0
+	// 关键参数fops
     Major = register_chrdev(0, DEVICE_NAME, &fops);
     if (Major < 0) {
         printk(KERN_ALERT "Registering char device failed with %d\n", Major);
