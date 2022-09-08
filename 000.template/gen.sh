@@ -128,4 +128,6 @@ sed -i "s/helloworld/$1/g" "src/$1.c"
 sed -i "s/helloworld/$1/g" README.md
 sed -i "s/TIMESTAMP/${TIMESTAMP}/g" README.md
 
+[ -f gen.sh ] && rm -f gen.sh
+
 echo "All done!"
