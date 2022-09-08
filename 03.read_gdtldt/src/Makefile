@@ -1,4 +1,4 @@
-ENTRY := helloworld
+ENTRY := read-gdtr
 obj-m := $(ENTRY).o
 KERNEL_VER = $(shell uname -r)
 default: build_module
