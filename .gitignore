@@ -1,3 +1,6 @@
+.vscode*
+
+
 # kernel module
 modules.order
 Module.symvers
