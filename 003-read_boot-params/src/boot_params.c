@@ -3,7 +3,7 @@
 #include <linux/module.h>
 
 // ffffffff9b404400 B boot_params
-// ffffffffc0466000 d boot_params	[zero_page]
+// ffffffffc0466000 d boot_params	[boot_params]
 // extern struct boot_params boot_params;
 struct boot_params *boot_params = (struct boot_params *)0xffffffff9b404400;
 // ffffffff9b402008 B saved_command_line
@@ -12,39 +12,38 @@ void * saved_command_line_ptr = (void *)0xffffffff99402008;
 
 
 static int __init
-zero_page_init(void)
+boot_params_init(void)
 {
     printk(KERN_INFO "--------------------------------------------\n");
-    printk(KERN_INFO "Loading zero_page Module\n");
+    printk(KERN_INFO "Loading boot_params Module\n");
     printk(KERN_INFO "file:%s func:%s line:%d\n",__FILE__,__func__,__LINE__);
 
     printk(KERN_INFO "%d\n", boot_params->hdr.setup_sects);
 
     printk(KERN_INFO " saved_command_line %p\n", saved_command_line_ptr);
-
+    
+    return 0;
     // struct boot_params
     {
         // struct screen_info screen_info;         /* 0x000 */
-        printk(KERN_INFO "struct screen_info screen_info : %p\n", &boot_params->screen_info);
+        printk(KERN_INFO "struct screen_info screen_info : %p\n", &(boot_params->screen_info));
         // struct apm_bios_info apm_bios_info;     /* 0x040 */
-        printk(KERN_INFO "struct apm_bios_info apm_bios_info : %p\n", &boot_params->apm_bios_info);
+        printk(KERN_INFO "struct apm_bios_info apm_bios_info : %p\n", &(boot_params->apm_bios_info));
         // __u8 _pad2[4];                          /* 0x054 */
         // __u64 tboot_addr;                       /* 0x058 */
         // struct ist_info ist_info;               /* 0x060 */
-        printk(KERN_INFO "struct ist_info ist_info : %p\n", &boot_params->ist_info);
+        printk(KERN_INFO "struct ist_info ist_info : %p\n", &(boot_params->ist_info));
         // __u8 _pad3[16];                         /* 0x070 */
         // __u8 hd0_info[16]; /* obsolete! */      /* 0x080 */
         // __u8 hd1_info[16]; /* obsolete! */      /* 0x090 */
         // struct sys_desc_table sys_desc_table;   /* 0x0a0 */
-        printk(KERN_INFO "struct sys_desc_table sys_desc_table : %p\n", &boot_params->sys_desc_table);
+        printk(KERN_INFO "struct sys_desc_table sys_desc_table : %p\n", &(boot_params->sys_desc_table));
         // struct olpc_ofw_header olpc_ofw_header; /* 0x0b0 */
-        printk(KERN_INFO "struct olpc_ofw_header olpc_ofw_header : %p\n", &boot_params->olpc_ofw_header);
+        printk(KERN_INFO "struct olpc_ofw_header olpc_ofw_header : %p\n", &(boot_params->olpc_ofw_header));
         // __u32 ext_ramdisk_image;                /* 0x0c0 */
         // __u32 ext_ramdisk_size;                 /* 0x0c4 */
         // __u32 ext_cmd_line_ptr;                 /* 0x0c8 */
-        printk(KERN_INFO "__u32 ext_cmd_line_ptr : %d\n", boot_params->ext_cmd_line_ptr);
-        printk(KERN_INFO "__u32 ext_cmd_line_ptr : %p\n", (void *)boot_params->ext_cmd_line_ptr);
-        printk(KERN_INFO "__u32 ext_cmd_line_ptr : %s\n", (char *)boot_params->ext_cmd_line_ptr);
+        // printk(KERN_INFO "__u32 ext_cmd_line_ptr : %d\n", boot_params->ext_cmd_line_ptr);
         // __u8 _pad4[116];                        /* 0x0cc */
         // struct edid_info edid_info;             /* 0x140 */
         // struct efi_info efi_info;               /* 0x1c0 */
@@ -58,7 +57,7 @@ zero_page_init(void)
         // __u8 sentinel;                              /* 0x1ef */
         // __u8 _pad6[1];                              /* 0x1f0 */
         // struct setup_header hdr; /* setup header */ /* 0x1f1 */
-        printk(KERN_INFO "struct setup_header hdr : %p\n", &boot_params->hdr);
+        printk(KERN_INFO "struct setup_header hdr : %p\n", &(boot_params->hdr));
         // struct setup_header
         {
             // __u8 setup_sects;
@@ -115,7 +114,7 @@ zero_page_init(void)
             // __u8 min_alignment;
             printk(KERN_INFO "  __u8 min_alignment : %d\n", boot_params->hdr.min_alignment);
             // __u16 xloadflags;
-            printk(KERN_INFO "  __u16 xloadflags : %p\n", boot_params->hdr.xloadflags);
+            printk(KERN_INFO "  __u16 xloadflags : %d\n", boot_params->hdr.xloadflags);
             // __u32 cmdline_size;
             printk(KERN_INFO "  __u16 cmdline_size : %d\n", boot_params->hdr.cmdline_size);
             // __u32 hardware_subarch;
@@ -141,16 +140,16 @@ zero_page_init(void)
 }
 
 static void __exit 
-zero_page_exit(void)
+boot_params_exit(void)
 {
     printk(KERN_INFO "--------------------------------------------\n");
-    printk(KERN_INFO "Removing zero_page Module\n");
+    printk(KERN_INFO "Removing boot_params Module\n");
     printk(KERN_INFO "file:%s func:%s line:%d\n",__FILE__,__func__,__LINE__);
 }
 
-module_init(zero_page_init);
-module_exit(zero_page_exit);
+module_init(boot_params_init);
+module_exit(boot_params_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("zero_page Module");
+MODULE_DESCRIPTION("boot_params Module");
 MODULE_AUTHOR("nicyou");
