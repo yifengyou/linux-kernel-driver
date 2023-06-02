@@ -1,0 +1,15 @@
+[13682.341888] symbol_export: loading out-of-tree module taints kernel.
+[13682.342070] symbol_export: module verification failed: signature and/or required key missing - tainting kernel
+[13682.343033] symbol_export module loaded
+[13682.343035] This is func_t
+[13682.343038] var_D = 42
+[13682.343040] var_d = 24
+[13682.343041] var_R = 100
+[13682.343042] var_r = 200
+[13682.343044] var_A = 1234
+[13682.343045] var_a = 4321
+[13682.343046] var_B = 0
+[13682.343048] var_b = 0
+[13682.343049] var_G = 10
+[13682.343050] var_C = 20
+[13682.343051] var_W = 30
